@@ -19,19 +19,54 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
+
+        //setOnClickListener to all Views in the root View that are instances of TextView
+        ViewGroup vg = findViewById(R.id.main_activity_root);
+        for (int i = 0; i < vg.getChildCount(); i++) {
+            View v = vg.getChildAt(i);
+            if (v instanceof TextView) {
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        openList(v);
+                    }
+                });
+            }
+        }
     }
 
-    public void openNumbersList(View v) {
-        Intent i = new Intent(this, NumbersActivity.class);
-        startActivity(i);
+    //When a TextView is clicked the corresponding Activity should be started
+    public void openList(View v) {
+        Intent i;
+        String viewId = v.getResources().getResourceEntryName(v.getId());
+        switch (viewId) {
+            case "numbers":
+                i = new Intent(this, NumbersActivity.class);
+                startActivity(i);
+                break;
+            case "colors":
+                i = new Intent(this, ColorsActivity.class);
+                startActivity(i);
+                break;
+            case "family":
+                i = new Intent(this, FamilyActivity.class);
+                startActivity(i);
+                break;
+            case "phrases":
+                i = new Intent(this, PhrasesActivity.class);
+                startActivity(i);
+                break;
+            default:
+                break;
+        }
     }
 }
