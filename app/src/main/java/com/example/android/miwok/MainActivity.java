@@ -47,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
     //When a TextView is clicked the corresponding Activity should be started
     public void openList(View v) {
         Intent i;
-        String viewId = v.getResources().getResourceEntryName(v.getId());
-        switch (viewId) {
+        switch (v.getResources().getResourceEntryName(v.getId())) {
             case "numbers":
                 i = new Intent(this, NumbersActivity.class);
                 startActivity(i);

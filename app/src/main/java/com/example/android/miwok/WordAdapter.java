@@ -28,7 +28,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
-        Word currentWord = getItem(position);
+        final Word currentWord = getItem(position);
         if (currentWord != null) {
             ImageView illustrativeImage = listItemView.findViewById(R.id.illustrative_image);
             if (currentWord.hasIllustration()) {
