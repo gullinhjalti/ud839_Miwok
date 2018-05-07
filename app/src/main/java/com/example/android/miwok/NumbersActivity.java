@@ -40,12 +40,12 @@ public class NumbersActivity extends AppCompatActivity {
 
                 // Create and setup the {@link MediaPlayer} for the audio resource associated
                 // with the current word
-                releaseMediaPlayer(mMediaPlayer);
+                releaseMediaPlayer();
                 mMediaPlayer = MediaPlayer.create(NumbersActivity.this, word.getAudio());
                 mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
-                        releaseMediaPlayer(mp);
+                        releaseMediaPlayer();
                     }
                 });
 
@@ -55,9 +55,15 @@ public class NumbersActivity extends AppCompatActivity {
         });
     }
 
-    private void releaseMediaPlayer(MediaPlayer mp) {
-        if (mp != null) {
-            mp.release();
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
+    private void releaseMediaPlayer() {
+        if (mMediaPlayer != null) {
+            mMediaPlayer.release();
             mMediaPlayer = null;
         }
     }
