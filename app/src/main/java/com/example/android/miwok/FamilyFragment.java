@@ -60,8 +60,6 @@ public class FamilyFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.word_list, container, false);
 
-        //modified code from the NumbersActivity file
-
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         final ArrayList<Word> words = new ArrayList<>();
         words.add(new Word(R.drawable.family_father, "әpә", "father", R.raw.family_father));

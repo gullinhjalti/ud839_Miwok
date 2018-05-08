@@ -60,8 +60,6 @@ public class PhrasesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.word_list, container, false);
 
-        //modified code from the NumbersActivity file
-
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         final ArrayList<Word> words = new ArrayList<>();
         words.add(new Word("minto wuksus?", "Where are you going?", R.raw.phrase_where_are_you_going));
