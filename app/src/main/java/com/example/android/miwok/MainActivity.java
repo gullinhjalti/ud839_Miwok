@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         ViewGroup vg = findViewById(R.id.main_activity_root);
         for (int i = 0; i < vg.getChildCount(); i++) {
             View v = vg.getChildAt(i);
-            if (v instanceof FrameLayout) {
+            if (v != null && v instanceof FrameLayout) {
                 View vT = ((FrameLayout) v).getChildAt(0);
                 if (vT != null && vT instanceof TextView) {
                     vT.setOnClickListener(new View.OnClickListener() {
