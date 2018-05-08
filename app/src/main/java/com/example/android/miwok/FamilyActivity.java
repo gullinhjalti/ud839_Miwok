@@ -18,19 +18,21 @@ public class FamilyActivity extends AppCompatActivity {
     private AudioManager.OnAudioFocusChangeListener audioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int focusChange) {
-            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
-                mMediaPlayer.pause();
-                //Log.v("ColorActivity","AudioManager.AUDIOFOCUS_LOSS_TRANSIENT");
-            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-                mMediaPlayer.stop();
-                releaseMediaPlayer();
-                //Log.v("ColorActivity","AudioManager.AUDIOFOCUS_LOSS");
-            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-                mMediaPlayer.pause();
-                //Log.v("ColorActivity","AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK");
-            } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-                //Log.v("ColorActivity","AudioManager.AUDIOFOCUS_GAIN");
-                mMediaPlayer.start();
+            if (mMediaPlayer != null) {
+                if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+                    mMediaPlayer.pause();
+                    //Log.v("ColorActivity","AudioManager.AUDIOFOCUS_LOSS_TRANSIENT");
+                } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                    mMediaPlayer.stop();
+                    releaseMediaPlayer();
+                    //Log.v("ColorActivity","AudioManager.AUDIOFOCUS_LOSS");
+                } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                    mMediaPlayer.pause();
+                    //Log.v("ColorActivity","AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK");
+                } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                    //Log.v("ColorActivity","AudioManager.AUDIOFOCUS_GAIN");
+                    mMediaPlayer.start();
+                }
             }
         }
     };
