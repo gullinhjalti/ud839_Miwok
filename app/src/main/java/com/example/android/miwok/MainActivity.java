@@ -15,13 +15,9 @@
  */
 package com.example.android.miwok;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,46 +26,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //setOnClickListener to all Views in the root View that are instances of TextView
-        ViewGroup vg = findViewById(R.id.main_activity_root);
-        for (int i = 0; i < vg.getChildCount(); i++) {
-            View v = vg.getChildAt(i);
-            if (v != null && v instanceof FrameLayout) {
-                View vT = ((FrameLayout) v).getChildAt(0);
-                if (vT != null && vT instanceof TextView) {
-                    vT.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View vT) {
-                            openList(vT);
-                        }
-                    });
-                }
-            }
-        }
-    }
-
-    //When a TextView is clicked the corresponding Activity should be started
-    public void openList(View v) {
-        Intent i;
-        switch (v.getResources().getResourceEntryName(v.getId())) {
-            case "numbers":
-                i = new Intent(this, NumbersActivity.class);
-                startActivity(i);
-                break;
-            case "colors":
-                i = new Intent(this, ColorsActivity.class);
-                startActivity(i);
-                break;
-            case "family":
-                i = new Intent(this, FamilyActivity.class);
-                startActivity(i);
-                break;
-            case "phrases":
-                i = new Intent(this, PhrasesActivity.class);
-                startActivity(i);
-                break;
-            default:
-                break;
-        }
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        MiwokFragmentPagerAdapter mFP = new MiwokFragmentPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(mFP);
     }
 }
