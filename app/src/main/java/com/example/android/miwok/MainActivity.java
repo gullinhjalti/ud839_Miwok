@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,13 +34,16 @@ public class MainActivity extends AppCompatActivity {
         ViewGroup vg = findViewById(R.id.main_activity_root);
         for (int i = 0; i < vg.getChildCount(); i++) {
             View v = vg.getChildAt(i);
-            if (v instanceof TextView) {
-                v.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        openList(v);
-                    }
-                });
+            if (v instanceof FrameLayout) {
+                View vT = ((FrameLayout) v).getChildAt(0);
+                if (vT != null && vT instanceof TextView) {
+                    vT.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View vT) {
+                            openList(vT);
+                        }
+                    });
+                }
             }
         }
     }
