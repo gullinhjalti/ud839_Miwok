@@ -27,4 +27,7 @@
 
     <!-- Category name for the vocabulary words for family members [CHAR LIMIT=20] -->
     <string name="category_family">Family Members</string>
+
+    <!-- content description string for the ImageView containing the play button. -->
+    <string name="play_icon_desc">play arrow white</string>
 </resources>
